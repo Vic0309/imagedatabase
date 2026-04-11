@@ -3,123 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>影像處理工具箱</title>
+    <title>影像處理專業工具箱</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
-            --sidebar-width: 250px;
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
+            --sidebar-bg: #2c3e50;
+            --sidebar-hover: #34495e;
+            --accent: #3498db;
+            --text-color: #ecf0f1;
         }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        
-        /* 左側選單樣式 */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; height: 100vh; background: #f4f7f6; }
+
+        /* 側邊欄樹狀選單 */
         #sidebar {
-            width: var(--sidebar-width);
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px 0;
+            width: 280px;
+            background: var(--sidebar-bg);
+            color: var(--text-color);
+            padding: 15px 0;
             overflow-y: auto;
             flex-shrink: 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
         }
-        .category { padding: 10px 20px; font-weight: bold; color: #95a5a6; text-transform: uppercase; font-size: 0.8em; letter-spacing: 1px; }
-        .menu-item { 
-            padding: 12px 30px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            display: block;
-            color: #ecf0f1;
-            text-decoration: none;
-        }
-        .menu-item:hover { background-color: #34495e; color: var(--accent-color); }
-        .menu-item.active { background-color: var(--accent-color); color: white; border-right: 5px solid #fff; }
 
-        /* 右側內容區樣式 */
-        #content {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-            background-color: #f9f9f9;
+        /* 樹狀結構樣式 */
+        details { margin-bottom: 5px; }
+        summary { 
+            padding: 12px 20px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            list-style: none; /* 隱藏原生箭頭 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
         }
+        summary:hover { background: var(--sidebar-hover); }
+        summary::after { content: '▶'; font-size: 0.8em; transition: transform 0.3s; }
+        details[open] summary::after { transform: rotate(90deg); }
+
+        /* 選單項目 */
+        .menu-item {
+            display: block;
+            padding: 10px 40px;
+            text-decoration: none;
+            color: #bdc3c7;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .menu-item:hover { color: var(--accent); background: #1a252f; }
+        .menu-item.active { color: white; background: var(--accent); font-weight: bold; }
+
+        /* 主內容區 */
+        #content { flex-grow: 1; padding: 40px; overflow-y: auto; }
         .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.5s; }
+        .page.active { display: block; animation: fadeIn 0.4s; }
+        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         
-        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h1 { color: var(--primary-color); margin-top: 0; }
-        code { background: #eee; padding: 2px 5px; border-radius: 4px; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <nav id="sidebar">
-        <div class="category">影像公式</div>
-        <a class="menu-item active" onclick="showPage('rgb-yuv')">RGB 轉 YUV</a>
-        <a class="menu-item" onclick="showPage('fov-calc')">鏡頭 FOV 計算</a>
+        <div style="padding: 0 20px 20px; font-size: 1.2em; font-weight: bold; border-bottom: 1px solid #3e4f5f; margin-bottom: 10px;">
+            Image Lab 🔬
+        </div>
 
-        <div class="category">影像處理</div>
-        <a class="menu-item" onclick="showPage('sobel')">Sobel 邊緣檢測</a>
-        <a class="menu-item" onclick="showPage('saturation')">飽和度調整</a>
+        <details open>
+            <summary>影像公式 (Formulas)</summary>
+            <a class="menu-item active" onclick="showPage('rgb-yuv')">RGB 轉 YUV</a>
+            <a class="menu-item" onclick="showPage('fov-calc')">鏡頭 FOV 計算</a>
+        </details>
+
+        <details>
+            <summary>影像處理 (Processing)</summary>
+            <a class="menu-item" onclick="showPage('sobel')">Sobel 邊緣檢測</a>
+            <a class="menu-item" onclick="showPage('saturation')">飽和度調整</a>
+        </details>
+
+        <details>
+            <summary>光學測試 (Testing)</summary>
+            <a class="menu-item" onclick="showPage('mtf-info')">MTF50 說明</a>
+        </details>
     </nav>
 
     <main id="content">
-        
         <div id="rgb-yuv" class="page active">
-            <h1>RGB 轉 YUV 公式</h1>
             <div class="card">
-                <p>常用於影片壓縮與傳輸（如 BT.601 標準）：</p>
+                <h1>RGB 轉 YUV 公式</h1>
                 <p>$$ Y = 0.299R + 0.587G + 0.114B $$</p>
-                <p>$$ U = -0.147R - 0.289G + 0.436B $$</p>
-                <p>$$ V = 0.615R - 0.515G - 0.100B $$</p>
-                <hr>
-                <p>這裡可以放置你的計算輸入框...</p>
+                <p>這在數位影像處理中非常常見，用於分離亮度 (Y) 與色度 (UV)。</p>
             </div>
         </div>
 
         <div id="fov-calc" class="page">
-            <h1>鏡頭 FOV 計算</h1>
             <div class="card">
-                <p>給定感光元件尺寸 (h) 與焦距 (f)，水平視角 (HFOV) 公式為：</p>
+                <h1>鏡頭 FOV 計算</h1>
                 <p>$$ FOV = 2 \cdot \arctan\left(\frac{h}{2f}\right) $$</p>
-                <p>提示：計算時請注意弧度與角度的轉換。</p>
             </div>
         </div>
 
         <div id="sobel" class="page">
-            <h1>Sobel 邊緣檢測</h1>
             <div class="card">
-                <p>使用 3x3 卷積核來計算影像梯度：</p>
-                <p>Horizontal ($G_x$): $\begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}$ 
-                   Vertical ($G_y$): $\begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix}$</p>
+                <h1>Sobel 邊緣檢測</h1>
+                <p>用於影像銳利化或特徵提取。</p>
             </div>
         </div>
 
         <div id="saturation" class="page">
-            <h1>飽和度調整</h1>
             <div class="card">
-                <p>通常透過將 RGB 轉換至 HSL 空間，調整 <b>S</b> 分量後再轉回 RGB。</p>
-                <p>簡易線性調整法：$Color_{out} = Gray + (Color_{in} - Gray) \cdot SaturationFactor$</p>
+                <h1>飽和度調整</h1>
+                <p>調整色彩的鮮豔程度。</p>
             </div>
         </div>
 
+        <div id="mtf-info" class="page">
+            <div class="card">
+                <h1>MTF50 解析度測試</h1>
+                <p>用於評估影像銳度與光學性能。</p>
+            </div>
+        </div>
     </main>
 
     <script>
         function showPage(pageId) {
-            // 1. 隱藏所有頁面
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
+            // 隱藏舊頁面
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
 
-            // 2. 移除所有選單的 active 樣式
-            const menuItems = document.querySelectorAll('.menu-item');
-            menuItems.forEach(item => item.classList.remove('active'));
-
-            // 3. 顯示目標頁面
+            // 顯示新頁面
             document.getElementById(pageId).classList.add('active');
-
-            // 4. 將點擊的選單設為 active (透過事件目標)
+            
+            // 標註選單項目
             event.currentTarget.classList.add('active');
         }
     </script>
