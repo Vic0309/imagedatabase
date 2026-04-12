@@ -1,0 +1,12 @@
+body { font-family: sans-serif; margin: 0; display: flex; height: 100vh; background: #f0f2f5; }
+#sidebar { width: 260px; background: #2c3e50; color: white; overflow-y: auto; }
+.logo { padding: 20px; font-size: 1.2em; font-weight: bold; background: #1a252f; text-align: center; }
+summary { padding: 15px; cursor: pointer; background: #34495e; border-bottom: 1px solid #2c3e50; }
+.menu-item { display: block; padding: 10px 30px; color: #bdc3c7; text-decoration: none; cursor: pointer; }
+.menu-item:hover { background: #1a252f; color: #3498db; }
+#content { flex-grow: 1; padding: 40px; }
+.card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.formula-box { background: #f8f9fa; padding: 15px; border-left: 5px solid #3498db; margin: 20px 0; }
+.calc-group { margin-bottom: 10px; }
+input { padding: 5px; border: 1px solid #ddd; border-radius: 4px; }
+button { padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
