@@ -30,8 +30,8 @@ export const moduleData = {
             const ph = image_h * pixel_size /1000;
             const res_ph = res_mm * ph;
             document.getElementById('res-box').innerText = `Sensor奈奎斯特最大解析度: ${res_mm.toFixed(2)} LP/mm = ${res_ph.toFixed(1)} LP/PH`;
-            document.getElementById('res-box-mm').innerText = `${res_mm.toFixed(2)} LP/mm，在1mm空間中有${res_mm.toFixed(2)}Line Pair`;
-            document.getElementById('res-box-ph').innerText = `${res_ph.toFixed(1)} LP/PH，在影像高度${ph.toFixed(1)}mm空間中有${res_ph.toFixed(1)}Line Pair`;
+            document.getElementById('res-box-mm').innerText = `${res_mm.toFixed(2)} LP/mm，在1mm空間中有${res_mm.toFixed(2)} Line Pair`;
+            document.getElementById('res-box-ph').innerText = `${res_ph.toFixed(1)} LP/PH，在影像高度${ph.toFixed(1)}mm (${pixel_size.toFixed(1)}*${image_h.toFixed(0)}/1000)空間中有${res_ph.toFixed(1)} Line Pair`;
         };
     }
 };
