@@ -17,6 +17,7 @@ export const moduleData = {
             </div>
             <button id="run-btn">Calculation</button>
             <div id="illuminance" style="margin-top:20px; font-weight:bold; color:#3498db;"></div>
+            </div>
             
             /*
             <div class="info-card" style="line-height: 1.8;">
@@ -82,10 +83,11 @@ export const moduleData = {
                     </li>
                     
                 </ul>
+            </div>
 
                 */
                 
-            </div>
+            
 
             
         `;
