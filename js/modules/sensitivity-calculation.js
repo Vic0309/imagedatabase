@@ -18,7 +18,7 @@ export const moduleData = {
             <button id="run-btn">Calculation</button>
             <div id="illuminance" style="margin-top:20px; font-weight:bold; color:#3498db;"></div>
             
-
+            /*
             <div class="info-card" style="line-height: 1.8;">
                 <h3 style="color: #2c3e50; margin-bottom: 10px;">Illuminance (照度，符號 $E$)</h3>
                 <ul style="list-style-type: none; padding-left: 20px;">
@@ -82,6 +82,8 @@ export const moduleData = {
                     </li>
                     
                 </ul>
+
+                */
                 
             </div>
 
