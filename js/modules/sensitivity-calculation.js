@@ -21,13 +21,13 @@ export const moduleData = {
             
             
             <div class="info-card" style="line-height: 1.8;">
-                <h3 style="color: #2c3e50; margin-bottom: 10px;">Illuminance (照度，符號 $$E$$)</h3>
+                <h3 style="color: #2c3e50; margin-bottom: 10px;">Illuminance (照度，符號 E)</h3>
                 <ul style="list-style-type: none; padding-left: 20px;">
                     <li style="margin-bottom: 8px;">
                         <strong>定義：</strong>單位面積上接收到的光通量（Luminous flux）。
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>單位：</strong>Lux ($$lx = lm/m^2$$)。
+                        <strong>單位：</strong>Lux (lx = lm/m^2)。
                     </li>
                     <li style="margin-bottom: 8px;">
                         <strong>物理意義：</strong>這描述的是「環境光源」的強度，或是光線「擊中」目標表面的量。它不包含物體反射後的資訊。
@@ -36,13 +36,13 @@ export const moduleData = {
             </div>
         
             <div class="info-card" style="line-height: 1.8;">
-                <h3 style="color: #2c3e50; margin-bottom: 10px;">Luminance (輝度，符號 $$L$$)</h3>
+                <h3 style="color: #2c3e50; margin-bottom: 10px;">Luminance (輝度，符號 L)</h3>
                 <ul style="list-style-type: none; padding-left: 20px;">
                     <li style="margin-bottom: 8px;">
                         <strong>定義：</strong>從某個方向觀察時，單位投影面積所發出的光強度。
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>單位：</strong>$$cd/m^2$$ (尼特, Nits)。
+                        <strong>單位：</strong>cd/m^2 (尼特, Nits)。
                     </li>
                     <li style="margin-bottom: 8px;">
                         <strong>物理意義：</strong>這描述的是「被觀察對象」本身看起來有多亮。這不僅取決於光源，還取決於物體的表面性質（如顏色、材質、光澤）。
@@ -57,16 +57,16 @@ export const moduleData = {
                         <strong>公式：</strong>$$L = \\frac{E \\cdot \\rho}{\\pi}$$
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>$$L$$：Luminance ($$cd/m^2$$)
+                        <strong>L：Luminance (cd/m^2)
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>$$E$$：Illuminance ($$lx$$)
+                        <strong>E：Illuminance (lx)
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>$$\rho$$ (rho)：表面的反射率 (Reflectance)，範圍 0 到 1. ND Filter為0.89
+                        <strong>rho：表面的反射率 (Reflectance)，範圍 0 到 1. ND Filter為0.89
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>$$\pi$$ (pi)：「$$\pi$$」就是對朗伯表面進行半球空間積分得來的
+                        <strong>pi：「pi」就是對朗伯表面進行半球空間積分得來的
                     </li>
                 </ul>
                 
@@ -79,7 +79,7 @@ export const moduleData = {
                         <strong>定義：</strong>**朗伯表面（Lambertian Surface）**是指一個表面在接收光線後，會將光線向四面八方均勻地散射。
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>$$L$$：物理特性是：無論你從哪一個角度觀察這個表面，你所看到的輝度（Luminance, $$cd/m^2$$）都是完全一樣的。
+                        <strong>L物理特性是無論你從哪一個角度觀察這個表面，你所看到的輝度（Luminance, cd/m^2）都是完全一樣的。
                     </li>
                     
                 </ul>
@@ -89,13 +89,13 @@ export const moduleData = {
                 <h3 style="color: #2c3e50; margin-bottom: 10px;">感測器接收到的總光量（曝光量）與光源亮度和曝光時間成正比：</h3>
                 <ul style="list-style-type: none; padding-left: 20px;">
                     <li style="margin-bottom: 8px;">
-                        <strong>$$\\text{曝光能量} \\propto \\text{光源亮度} (L) \\times \\text{曝光時間} (T)$$。
+                        <strong>$$\\text{曝光能量} \\propto \\text{光源亮度} (L) \\times \\text{曝光時間} (T)$$
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>如果以 40ms 作為基準（代表 100% 的光量表現），當您將時間縮短為 10ms 時，對於感測器來說，這就像是看到了一個「變暗」的光源。。
+                        <strong>如果以 40ms 作為基準（代表 100% 的光量表現），當您將時間縮短為 10ms 時，對於感測器來說，這就像是看到了一個「變暗」的光源。
                     </li>
                     <li style="margin-bottom: 8px;">
-                        <strong>計算公式：</strong>。$$\\text{模擬亮度} (L_{sim}) = \\text{實際亮度} (L_{actual}) \\times \\frac{T_{current}}{T_{40ms}}$$
+                        <strong>計算公式：</strong>$$\\text{模擬亮度} (L_{sim}) = \\text{實際亮度} (L_{actual}) \\times \\frac{T_{current}}{T_{40ms}}$$
                     </li>
                     
                 </ul>
